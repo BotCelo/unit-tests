@@ -14,12 +14,12 @@ class ServiceUser:
                         return "usuário inválido, nome já existe"
                 user = User(name=name, job=job)
                 self.store.bd.append(user)
-                return "usuario adicionado"
+                return "Usuario adicionado"
             else:
                 user = User(name=name, job=job)
                 self.store.bd.append(user)
                 print(self.store.bd)
-                return "Usuário adicionado"
+                return "Usuario adicionado"
         else:
             return "Usuario invalido"
     def remove_user(self, name):
@@ -32,3 +32,12 @@ class ServiceUser:
             return 'usuário excluído'
         else:
             return "usuário inválido"
+
+    def update_user(self, name, newjob):
+        if name and isinstance(name, str):
+            list_all_names = [x.name for x in self.store.bd]
+            if name not in list_all_names:
+                return 'usuário não existe'
+            index = list_all_names.index(name)
+            updated_user = User(name, newjob)
+            self.store.bd[index] = updated_user
