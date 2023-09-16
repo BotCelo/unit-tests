@@ -8,16 +8,13 @@ class ServiceUser:
 
     def add_user(self, name, job):
         if name and job and isinstance(name, str) and isinstance(job, str):
-            name_already_exists = False
             if self.store.bd:
                 for x in self.store.bd:
                     if x.name == name:
-                        name_already_exists = True
                         return "usuário inválido, nome já existe"
-                if not name_already_exists:
-                    user = User(name=name, job=job)
-                    self.store.bd.append(user)
-                    return "usuario adicionado"
+                user = User(name=name, job=job)
+                self.store.bd.append(user)
+                return "usuario adicionado"
             else:
                 user = User(name=name, job=job)
                 self.store.bd.append(user)
@@ -26,4 +23,12 @@ class ServiceUser:
         else:
             return "Usuario invalido"
     def remove_user(self, name):
-        pass
+        if name and isinstance(name, str):
+            list_all_names = [x.name for x in self.store.bd]
+            if name not in list_all_names:
+                return 'usuário não existe'
+            index = list_all_names.index(name)
+            self.store.bd.pop(index)
+            return 'usuário excluído'
+        else:
+            return "usuário inválido"

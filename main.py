@@ -18,7 +18,14 @@ resposta = service.add_user('marcelo', True)
 resposta = service.add_user('marcelo','test')
 resposta = service.add_user('marcelo novo','test')
 
+resposta = service.add_user('sara','test')
+resposta = service.add_user('ricardo','test')
 
-print([x.name for x in service.store.bd])
-print([x.job for x in service.store.bd])
-print(resposta)
+#print([x.name for x in service.store.bd])
+#print([x.job for x in service.store.bd])
+#print(resposta)
+
+print([(x.name, x.job) for x in service.store.bd])
+print(service.remove_user('marcelo asdasdasdasdas'))
+print(service.remove_user('sara'))
+print([(x.name, x.job) for x in service.store.bd])
