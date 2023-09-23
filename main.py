@@ -31,3 +31,5 @@ print(service.remove_user('sara'))
 print([(x.name, x.job) for x in service.store.bd])
 service.update_user('marcelo', 'astronautaaaa')
 print([(x.name, x.job) for x in service.store.bd])
+
+print(service.get_user_by_name('marcelo cvvbndfcbnv'))
