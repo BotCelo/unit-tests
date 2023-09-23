@@ -34,7 +34,7 @@ class TestServiceUser(unittest.TestCase):
         resposta = service.get_user_by_name("marcelo")
         assert resposta_esperada == resposta
 
-    def test_get_user_by_name_passing_a_name_which_does_not_exists_in_db_to_method(self):
+    def test_get_user_by_name_passing_a_name_which_does_not_exist_in_db_to_method(self):
         resposta_esperada = "Nome inválido ou usuário não existe na base de dados"
         service = ServiceUser()
         service.add_user("not marcelo", "astronauta")
