@@ -1,9 +1,9 @@
-##import unittest
+import unittest
 
 from src.service.service_user import ServiceUser
 
 
-class TestServiceUser:
+class TestServiceUser(unittest.TestCase):
     def test_add_user_com_sucesso(self):
         resposta_esperada = "Usuario adicionado"
         service = ServiceUser()
@@ -19,4 +19,24 @@ class TestServiceUser:
         service = ServiceUser()
         service.add_user("macmf", "astronauta")
         resposta = service.add_user("macmf", "astronauta")
+        assert resposta_esperada == resposta
+
+    def test_get_user_by_name_when_name_exists(self):
+        resposta_esperada = "name: marcelo, job: astronauta"
+        service = ServiceUser()
+        service.add_user("marcelo", "astronauta")
+        resposta = service.get_user_by_name("marcelo")
+        assert resposta_esperada == resposta
+    def test_get_user_by_name_passing_a_invalid_name_to_method(self):
+        resposta_esperada = "Nome inválido ou usuário não existe na base de dados"
+        service = ServiceUser()
+        service.add_user(5, "astronauta")
+        resposta = service.get_user_by_name("marcelo")
+        assert resposta_esperada == resposta
+
+    def test_get_user_by_name_passing_a_name_which_does_not_exists_in_db_to_method(self):
+        resposta_esperada = "Nome inválido ou usuário não existe na base de dados"
+        service = ServiceUser()
+        service.add_user("not marcelo", "astronauta")
+        resposta = service.get_user_by_name("marcelo")
         assert resposta_esperada == resposta

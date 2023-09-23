@@ -35,12 +35,10 @@ class ServiceUser:
             index = list_all_names.index(name)
             updated_user = User(name, newjob)
             self.store.bd[index] = updated_user
-
     def get_user_by_name(self, name):
         if name and isinstance(name, str):
             list_of_users_names = [x.name for x in self.store.bd]
             if name in list_of_users_names:
                 index = list_of_users_names.index(name)
-                print(index)
-                return self.store.bd[index].job
+                return f"name: {self.store.bd[index].name}, job: {self.store.bd[index].job}"
         return "Nome inválido ou usuário não existe na base de dados"
