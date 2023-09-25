@@ -4,7 +4,7 @@ from src.service.service_user import ServiceUser
 
 
 class TestServiceUser(unittest.TestCase):
-    def test_add_user_com_sucesso(self):
+    def test_add_user_with_success(self):
         resposta_esperada = "Usuario adicionado"
         service = ServiceUser()
         resposta = service.add_user("Fabricio", "Eng")
@@ -40,3 +40,21 @@ class TestServiceUser(unittest.TestCase):
         service.add_user("not marcelo", "astronauta")
         resposta = service.get_user_by_name("marcelo")
         assert resposta_esperada == resposta
+
+    def test_remove_user_with_success(self):
+        resposta_esperada = 'usuário excluído'
+        service = ServiceUser()
+        service.add_user("macmf", "demon slayer")
+        resposta = service.remove_user("macmf")
+        assert resposta == resposta_esperada
+    def test_remove_user_which_does_not_exist(self):
+        resposta_esperada = 'usuário não existe'
+        service = ServiceUser()
+        resposta = service.remove_user("macmf")
+        assert resposta == resposta_esperada
+
+    def test_remove_invalid_user(self):
+        resposta_esperada = 'usuário inválido'
+        service = ServiceUser()
+        resposta = service.remove_user(5)
+        assert resposta == resposta_esperada
