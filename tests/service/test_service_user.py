@@ -58,3 +58,21 @@ class TestServiceUser(unittest.TestCase):
         service = ServiceUser()
         resposta = service.remove_user(5)
         assert resposta == resposta_esperada
+
+    def test_update_a_valid_user(self):
+        resposta_esperada = 'usuário atualizado'
+        service = ServiceUser()
+        service.add_user("macmf", "demon slayer")
+        resposta = service.update_user("macmf", "aluno")
+        assert resposta == resposta_esperada
+    def test_update_a_invalid_user(self):
+        resposta_esperada = 'usuário inválido'
+        service = ServiceUser()
+        service.add_user("macmf", "demon slayer")
+        resposta = service.update_user(5, "aluno")
+        assert resposta == resposta_esperada
+    def test_update_a_user_which_does_not_exist(self):
+        resposta_esperada = 'usuário não existe'
+        service = ServiceUser()
+        resposta = service.update_user('macmf', "aluno")
+        assert resposta == resposta_esperada
